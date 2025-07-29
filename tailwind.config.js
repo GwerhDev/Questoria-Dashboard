@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,6 +8,21 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Light mode colors
+        'light-background': '#f0f2f5',
+        'light-surface': '#ffffff',
+        'light-text-primary': '#1a202c',
+        'light-text-secondary': '#4a5568',
+        'light-border': '#e2e8f0',
+
+        // Dark mode colors
+        'dark-background': '#1a202c',
+        'dark-surface': '#2d3748',
+        'dark-text-primary': '#e2e8f0',
+        'dark-text-secondary': '#a0aec0',
+        'dark-border': '#4a5568',
+
+        // Shared colors (blacks, grays, cyans, whites)
         'black-primary': '#1a1a1a',
         'black-secondary': '#2c2c2c',
         'gray-dark': '#3f3f3f',
