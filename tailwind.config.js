@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       screens: {
         '2xsm': '375px',
@@ -25,6 +25,26 @@ export default {
         'theme-xs': ['12px', '18px'],
       },
       colors: {
+        primary: {
+          DEFAULT: '#03A6A1',
+          light: '#33BBA1',
+          dark: '#028C87',
+        },
+        secondary: {
+          DEFAULT: '#FFE3BB',
+          light: '#FFF0D4',
+          dark: '#E6CC99',
+        },
+        tertiary: {
+          DEFAULT: '#FFA673',
+          light: '#FFC299',
+          dark: '#E68F66',
+        },
+        quaternary: {
+          DEFAULT: '#FF4F0F',
+          light: '#FF7A4C',
+          dark: '#E6470E',
+        },
         current: 'currentColor',
         transparent: 'transparent',
         white: '#ffffff',
