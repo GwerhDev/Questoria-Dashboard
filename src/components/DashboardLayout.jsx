@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const DashboardLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -43,13 +45,12 @@ const DashboardLayout = ({ children }) => {
               placeholder="Search..."
               className="p-2 border dark:border-dark-border border-light-border rounded-md dark:bg-dark-background dark:text-dark-text-primary text-light-text-primary focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-300"
             />
-            <button
+            <span
               onClick={toggleDarkMode}
-              className="p-2 bg-cyan-500 text-white-primary rounded-md hover:bg-cyan-600 transition-colors duration-200 shadow-md"
+              className="cursor-pointer dark:text-dark-text-primary text-light-text-primary transition-colors duration-200"
             >
-              Toggle {darkMode ? 'Light' : 'Dark'} Mode
-            </button>
-            <button className="p-2 bg-cyan-500 text-white-primary rounded-md hover:bg-cyan-600 transition-colors duration-200 shadow-md">Profile</button>
+              <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+            </span>
           </div>
         </header>
 
