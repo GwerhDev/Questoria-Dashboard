@@ -18,12 +18,12 @@ const AppContent = () => {
   const token = Cookies.get('token');
 
   useEffect(() => {
+    setLoading(true);
     if (!token) {
       navigate('/unauthorized');
       setLoading(false);
       return;
     }
-    setLoading(true);
     dispatch(fetchAccountData(navigate))
       .finally(() => {
         setLoading(false);
