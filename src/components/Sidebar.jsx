@@ -10,7 +10,10 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
 
   const getLinkClass = (path) => {
     const baseClasses = `flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 ${isCollapsed ? 'justify-center' : ''}`;
-    return location.pathname === path ? `${baseClasses} bg-gray-600 text-white` : baseClasses;
+    if (path === '/') {
+      return location.pathname === path ? `${baseClasses} bg-gray-600 text-white` : baseClasses;
+    }
+    return location.pathname.startsWith(path) ? `${baseClasses} bg-gray-600 text-white` : baseClasses;
   };
 
   return (
