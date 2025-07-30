@@ -30,7 +30,7 @@ const AdventureDetailPage = () => {
 
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-2xl font-semibold text-text-primary">Quests</h2>
-        <Link to={`/creator/${adventureId}/new-quest`} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <Link to={`/creator/${adventureId}/new-quest`} className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
           Add New Quest
         </Link>
       </div>
