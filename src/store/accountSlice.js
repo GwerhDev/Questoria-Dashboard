@@ -4,19 +4,22 @@ const API_BASE = import.meta.env.VITE_API_BASE;
 
 export const fetchAccountData = createAsyncThunk(
   'account/fetchAccountData',
-  async (_, { rejectWithValue }) => {
+  async (navigate, { rejectWithValue }) => {
     try {
       const response = await fetch(`${API_BASE}/account/my-data`, {
         credentials: 'include',
       });
 
       if (!response.ok) {
+        navigate('/unauthorized');
         throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
+      navigate('/');
       return data;
     } catch (error) {
+      navigate('/unauthorized');
       return rejectWithValue(error.message);
     }
   }

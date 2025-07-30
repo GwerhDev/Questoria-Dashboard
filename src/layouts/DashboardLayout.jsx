@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAccountData } from '../store/accountSlice';
+import { fetchAccountData, logoutUser } from '../store/accountSlice';
 import { useNavigate, Link } from 'react-router-dom';
 
 const DashboardLayout = ({ children }) => {
