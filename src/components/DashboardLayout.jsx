@@ -1,21 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from './Sidebar';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const sidebarRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsSidebarCollapsed(true);
-      } else {
-        setIsSidebarCollapsed(false);
-      }
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setIsSidebarCollapsed(mobile);
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobile && !isSidebarCollapsed && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarCollapsed(true);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobile, isSidebarCollapsed]);
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -23,10 +36,12 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="flex h-screen font-sans text-gray-400">
-      <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />
+      <div ref={sidebarRef}>
+        <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} isMobile={isMobile} />
+      </div>
 
       {/* Main Content Wrapper */}
-      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300`}>
+      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${isMobile ? 'ml-16' : ''}`}>
         {/* Navbar */}
         <header className="p-4 flex justify-end items-center">
           <div className="flex items-center space-x-4">
