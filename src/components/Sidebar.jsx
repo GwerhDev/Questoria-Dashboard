@@ -14,10 +14,10 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
   };
 
   return (
-    <aside 
+    <aside
       className={`
         text-text-primary flex flex-col bg-surface backdrop-blur-lg 
-        supports-backdrop-blur:bg-opacity-75 border-r border-border h-full
+        supports-backdrop-blur:bg-opacity-75 h-full
         transition-all duration-300 ease-in-out z-10
         ${isMobile ? 'absolute' : 'relative'}
         ${widthClass}
@@ -43,15 +43,10 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
           </Link>
         </nav>
 
-        <div>
-          <div className={`p-4 border-t border-border text-sm text-text-secondary ${isCollapsed ? 'hidden' : 'block'}`}>
-            Logged in as Admin
-          </div>
-          <div className="p-4 border-t border-border">
-            <button onClick={toggleSidebar} className={`flex items-center py-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 w-full justify-center`}>
-              <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} />
-            </button>
-          </div>
+        <div className="p-4">
+          <button onClick={toggleSidebar} className={`flex items-center py-3 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 w-full justify-center`}>
+            <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} />
+          </button>
         </div>
       </div>
     </aside>
