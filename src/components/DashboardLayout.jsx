@@ -61,7 +61,7 @@ const DashboardLayout = ({ children }) => {
 
         {/* Content Area */}
         <main className="flex-1 overflow-auto p-4">
-          <div className="w-full h-full bg-light-transparent dark:bg-dark-transparent backdrop-blur-md supports-backdrop-blur:bg-opacity-50 rounded-lg p-4">
+          <div className="w-full h-full supports-backdrop-blur:bg-opacity-50 rounded-lg p-4">
             {children}
           </div>
         </main>
