@@ -8,3 +8,8 @@
   for = "/src/*.jsx"
   [headers.values]
     Content-Type = "application/javascript"
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
