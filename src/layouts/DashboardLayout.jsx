@@ -1,10 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar';
+import { useDispatch } from 'react-redux';
+import { fetchAccountData } from '../store/accountSlice';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const sidebarRef = useRef(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAccountData());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleResize = () => {
