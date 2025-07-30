@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faTachometerAlt, faUsers, faCog } from '@fortawesome/free-solid-svg-icons';
 
 const DashboardLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -45,9 +45,9 @@ const DashboardLayout = ({ children }) => {
         {/* Sidebar */}
         <aside className="w-64 dark:text-dark-text-primary text-light-text-primary flex flex-col transition-colors duration-300">
           <nav className="flex-1 p-4 space-y-2">
-            <a href="#" className="block p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600">Dashboard</a>
-            <a href="#" className="block p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600">Users</a>
-            <a href="#" className="block p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600">Settings</a>
+            <a href="#" className="flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600"><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" />Dashboard</a>
+            <a href="#" className="flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600"><FontAwesomeIcon icon={faUsers} className="mr-2" />Users</a>
+            <a href="#" className="flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600"><FontAwesomeIcon icon={faCog} className="mr-2" />Settings</a>
           </nav>
           <div className="p-4 border-t dark:border-dark-border border-light-border text-sm dark:text-dark-text-secondary text-light-text-secondary">
             Logged in as Admin
