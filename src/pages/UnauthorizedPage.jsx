@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchAccountData } from '../store/accountSlice';
 
 const UnauthorizedPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const accountStatus = useSelector((state) => state.account.status);
+  const accountData = useSelector((state) => state.account.data);
+
+  useEffect(() => {
+    dispatch(fetchAccountData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (accountStatus === 'succeeded' && accountData) {
+      navigate('/');
+    }
+  }, [accountStatus, accountData, navigate]);
+
   const handleLoginRedirect = () => {
     window.location.href = 'https://questoria.cl/login';
   };
