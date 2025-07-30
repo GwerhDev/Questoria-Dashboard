@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-background;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.6), transparent 40%);
+    filter: blur(120px);
+    transform: scale(1.5);
+    animation: pulse-and-spin 15s infinite alternate;
+  }
+}
+
+@keyframes pulse-and-spin {
+  0% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.8) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2) rotate(360deg);
+    opacity: 0.6;
+  }
+}

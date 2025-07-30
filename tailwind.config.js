@@ -16,7 +16,7 @@ export default {
         'light-border': '#e5e7eb',
 
         // Neutral Dark mode colors
-        'dark-background': '#111827',
+        'dark-background': '#0a0a1a',
         'dark-surface': '#1f2937',
         'dark-text-primary': '#f9fafb',
         'dark-text-secondary': '#9ca3af',
@@ -25,8 +25,15 @@ export default {
         'accent-blue-hover': '#9ca3af',
         'accent-blue-active': '#4b5563',
       },
+      backgroundColor: {
+        'light-transparent': 'rgba(255, 255, 255, 0.1)',
+        'dark-transparent': 'rgba(10, 10, 26, 0.2)',
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('supports-backdrop-blur', '@supports (backdrop-filter: blur(1rem))');
+    },
+  ],
 }
-
