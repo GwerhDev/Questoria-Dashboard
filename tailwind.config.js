@@ -21,10 +21,9 @@ export default {
         'dark-text-primary': '#f9fafb',
         'dark-text-secondary': '#9ca3af',
         'dark-border': '#374151',
-
-        // Accent color (a neutral blue)
-        'accent-blue': '#3b82f6',
-        'accent-blue-hover': '#2563eb',
+        'accent-blue': '#d1d5db',
+        'accent-blue-hover': '#9ca3af',
+        'accent-blue-active': '#4b5563',
       },
     },
   },
