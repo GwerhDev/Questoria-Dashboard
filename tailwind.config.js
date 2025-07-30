@@ -16,18 +16,15 @@ export default {
         'light-border': '#e5e7eb',
 
         // Neutral Dark mode colors
-        'dark-background': '#0a0a1a',
-        'dark-surface': '#1f2937',
+        'dark-background': '#1a100a',
+        'dark-surface': '#2e2014',
         'dark-text-primary': '#f9fafb',
         'dark-text-secondary': '#9ca3af',
-        'dark-border': '#374151',
-        'accent-blue': '#d1d5db',
-        'accent-blue-hover': '#9ca3af',
-        'accent-blue-active': '#4b5563',
+        'dark-border': '#4a3b2e',
       },
       backgroundColor: {
         'light-transparent': 'rgba(255, 255, 255, 0.1)',
-        'dark-transparent': 'rgba(10, 10, 26, 0.2)',
+        'dark-transparent': 'rgba(26, 16, 10, 0.2)',
       }
     },
   },

@@ -14,10 +14,9 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.6), transparent 40%);
-    filter: blur(120px);
-    transform: scale(1.5);
-    animation: pulse-and-spin 15s infinite alternate;
+    background: radial-gradient(circle at center, rgba(255, 140, 0, 0.4), rgba(255, 215, 0, 0.2), transparent 40%);
+    filter: blur(100px);
+    animation: pulse-and-spin 20s infinite alternate;
   }
 }
 
