@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdventureById } from '../store/adventureSlice';
-import Loader from '../components/Loader';
+import { Loader } from '../components/Loader';
 
 const AdventureDetailPage = () => {
   const { adventureId } = useParams();
