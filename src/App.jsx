@@ -1,4 +1,5 @@
 import DashboardLayout from './components/DashboardLayout';
+import DashboardCharts from './components/DashboardCharts';
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <div className="p-4 w-full text-text-primary">
         <h2 className="text-xl font-semibold mb-4">Welcome to your Dashboard!</h2>
         <p>This is a basic dashboard layout. You can add your content here.</p>
+        <DashboardCharts />
       </div>
     </DashboardLayout>
   );
