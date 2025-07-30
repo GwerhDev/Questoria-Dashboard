@@ -29,7 +29,7 @@ const AppContent = () => {
         setLoading(false);
       });
 
-  }, [token, navigate, dispatch]);
+  }, [token, dispatch]);
 
   if (loading) {
     return <Loader />;
