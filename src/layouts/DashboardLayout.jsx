@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccountData, logoutUser } from '../store/accountSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader } from '../components/Loader';
-import { getCookie } from "../utils/cookieUtils";
 
 const DashboardLayout = ({ children }) => {
   const accountData = useSelector((state) => state.account.data);
@@ -16,15 +15,9 @@ const DashboardLayout = ({ children }) => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = getCookie('token');
 
   useEffect(() => {
     setLoading(true);
-    if (!token) {
-      navigate('/unauthorized');
-      setLoading(false);
-      return;
-    }
     dispatch(fetchAccountData())
       .then((response) => {
         if (response.error) {
@@ -34,7 +27,7 @@ const DashboardLayout = ({ children }) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [token, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     const handleResize = () => {

@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getCookie } from "../utils/cookieUtils";
+import { useSelector } from "react-redux";
 
 const UnauthorizedPage = () => {
   const navigate = useNavigate();
-  const token = getCookie('token');
+  const logged = useSelector((state) => state.account.logged);
 
   const handleLoginRedirect = () => {
     window.location.href = 'https://questoria.cl/login';
   };
 
   useEffect(() => {
-    if (token) {
+    if (logged) {
       return navigate('/');
     }
-  }, [token]);
+  }, [logged]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background text-text-primary">
