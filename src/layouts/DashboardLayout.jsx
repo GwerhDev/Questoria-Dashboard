@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccountData } from '../store/accountSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (accountStatus === 'failed' || (accountStatus === 'succeeded' && !accountData)) {
+    if (accountStatus === 'failed' || (accountStatus === 'succeeded' && (!accountData || !accountData.logged))) {
       navigate('/unauthorized');
     }
   }, [accountStatus, accountData, navigate]);
@@ -67,6 +67,16 @@ const DashboardLayout = ({ children }) => {
               placeholder="Search..."
               className="p-2 rounded-xl bg-transparent border border-gray-500 text-text-primary focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
             />
+            {accountData && accountData.logged && (
+              <Link to="/u/account" className="flex items-center space-x-2 p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300">
+                {accountData.userData.profilePic ? (
+                  <img src={accountData.userData.profilePic} alt="Profile" className="w-8 h-8 rounded-full" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white text-sm">{accountData.userData.username.charAt(0).toUpperCase()}</div>
+                )}
+                <span className="text-text-primary hidden md:block">{accountData.userData.username}</span>
+              </Link>
+            )}
           </div>
         </header>
 
