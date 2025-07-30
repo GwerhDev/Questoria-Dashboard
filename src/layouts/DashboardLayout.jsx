@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import Cookies from 'js-cookie';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccountData, logoutUser } from '../store/accountSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import Loader from '../components/Loader';
+import { Loader } from '../components/Loader';
+import { getCookie } from "../utils/cookieUtils";
 
 const DashboardLayout = ({ children }) => {
   const accountData = useSelector((state) => state.account.data);
@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }) => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = Cookies.get('token');
+  const token = getCookie('token');
 
   useEffect(() => {
     setLoading(true);

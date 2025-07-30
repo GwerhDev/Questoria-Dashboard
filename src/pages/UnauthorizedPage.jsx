@@ -1,10 +1,10 @@
-import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { getCookie } from "../utils/cookieUtils";
 
 const UnauthorizedPage = () => {
   const navigate = useNavigate();
-  const token = Cookies.get('token');
+  const token = getCookie('token');
 
   const handleLoginRedirect = () => {
     window.location.href = 'https://questoria.cl/login';
