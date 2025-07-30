@@ -35,7 +35,7 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex h-screen font-sans text-gray-400">
+    <div className="flex h-screen font-sans text-gray-400 max-w-full overflow-x-hidden">
       <div ref={sidebarRef}>
         <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} isMobile={isMobile} />
       </div>

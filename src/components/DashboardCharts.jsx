@@ -21,7 +21,7 @@ const questsData = [
 
 const DashboardCharts = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
       <div className="bg-surface p-4 rounded-lg shadow-md">
         <h3 className="text-lg font-semibold mb-2 text-text-primary">Adventurers Over Time</h3>
         <ResponsiveContainer width="100%" height={300}>

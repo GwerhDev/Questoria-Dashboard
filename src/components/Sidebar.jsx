@@ -9,8 +9,8 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
   return (
     <aside 
       className={`
-        text-text-primary flex flex-col bg-transparent backdrop-blur-md 
-        supports-backdrop-blur:bg-opacity-50 border-r border-border h-full
+        text-text-primary flex flex-col bg-surface backdrop-blur-lg 
+        supports-backdrop-blur:bg-opacity-75 border-r border-border h-full
         transition-all duration-300 ease-in-out z-10
         ${isMobile ? 'absolute' : 'relative'}
         ${widthClass}
