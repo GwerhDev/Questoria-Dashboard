@@ -1,7 +1,20 @@
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 const UnauthorizedPage = () => {
+  const navigate = useNavigate();
+  const token = Cookies.get('token');
+
   const handleLoginRedirect = () => {
     window.location.href = 'https://questoria.cl/login';
   };
+
+  useEffect(() => {
+    if (token) {
+      return navigate('/');
+    }
+  }, [token]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background text-text-primary">

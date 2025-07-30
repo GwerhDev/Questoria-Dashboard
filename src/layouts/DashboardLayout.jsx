@@ -1,17 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
+import Cookies from 'js-cookie';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../store/accountSlice';
-import { Link } from 'react-router-dom';
+import { fetchAccountData, logoutUser } from '../store/accountSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const DashboardLayout = ({ children }) => {
   const accountData = useSelector((state) => state.account.data);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const sidebarRef = useRef(null);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = Cookies.get('token');
+
+  useEffect(() => {
+    setLoading(true);
+    if (!token) {
+      navigate('/unauthorized');
+      setLoading(false);
+      return;
+    }
+    dispatch(fetchAccountData())
+      .then((response) => {
+        if (response.error) {
+          navigate('/unauthorized');
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [token, dispatch]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,6 +70,10 @@ const DashboardLayout = ({ children }) => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex h-screen font-sans text-gray-400 max-w-full overflow-x-hidden">
