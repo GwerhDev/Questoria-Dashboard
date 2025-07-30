@@ -5,6 +5,7 @@ import UsersPage from './pages/UsersPage';
 import SettingsPage from './pages/SettingsPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 import AccountPage from './pages/AccountPage';
+import CreatorPage from './pages/CreatorPage';
 
 const AppContent = () => {
   return (
@@ -17,6 +18,7 @@ const AppContent = () => {
             <Route path="/users" element={<UsersPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/u/account" element={<AccountPage />} />
+            <Route path="/creator" element={<CreatorPage />} />
           </Routes>
         </DashboardLayout>
       } />

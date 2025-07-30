@@ -1,7 +1,7 @@
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faUsers, faCog, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faUsers, faCog, faChevronLeft, faChevronRight, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
@@ -36,6 +36,10 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
           <Link to="/users" className={getLinkClass('/users')}>
             <FontAwesomeIcon icon={faUsers} />
             <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Users</span>
+          </Link>
+          <Link to="/creator" className={getLinkClass('/creator')}>
+            <FontAwesomeIcon icon={faPen} />
+            <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Creator</span>
           </Link>
           <Link to="/settings" className={getLinkClass('/settings')}>
             <FontAwesomeIcon icon={faCog} />
