@@ -1,0 +1,10 @@
+
+[[headers]]
+  for = "/assets/*.jsx"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/src/*.jsx"
+  [headers.values]
+    Content-Type = "application/javascript"
