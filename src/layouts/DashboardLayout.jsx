@@ -1,29 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAccountData, logoutUser } from '../store/accountSlice';
-import { useNavigate, Link } from 'react-router-dom';
+import { logoutUser } from '../store/accountSlice';
+import { Link } from 'react-router-dom';
 
 const DashboardLayout = ({ children }) => {
+  const accountData = useSelector((state) => state.account.data);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const sidebarRef = useRef(null);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const accountStatus = useSelector((state) => state.account.status);
-  const accountData = useSelector((state) => state.account.data);
-
-  useEffect(() => {
-    dispatch(fetchAccountData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (accountStatus === 'failed' || (accountStatus === 'succeeded' && (!accountData || !accountData.logged)) || (accountStatus === 'idle' && !accountData)) {
-      navigate('/unauthorized');
-    }
-  }, [accountStatus, accountData, navigate]);
 
   useEffect(() => {
     const handleResize = () => {
