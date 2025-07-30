@@ -2,9 +2,16 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faUsers, faCog, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
   const widthClass = isCollapsed ? (isMobile ? 'w-16' : '') : 'w-64';
+  const location = useLocation();
+
+  const getLinkClass = (path) => {
+    const baseClasses = `flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 ${isCollapsed ? 'justify-center' : ''}`;
+    return location.pathname === path ? `${baseClasses} bg-gray-600 text-white` : baseClasses;
+  };
 
   return (
     <aside 
@@ -22,18 +29,18 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
 
       <div className={`flex-1 flex flex-col justify-between`}>
         <nav className="p-4 space-y-2">
-          <a href="#" className={`flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 ${isCollapsed ? 'justify-center' : ''}`}>
+          <Link to="/" className={getLinkClass('/')}>
             <FontAwesomeIcon icon={faTachometerAlt} />
             <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Dashboard</span>
-          </a>
-          <a href="#" className={`flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 ${isCollapsed ? 'justify-center' : ''}`}>
+          </Link>
+          <Link to="/users" className={getLinkClass('/users')}>
             <FontAwesomeIcon icon={faUsers} />
             <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Users</span>
-          </a>
-          <a href="#" className={`flex items-center p-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-gray-700 hover:text-white active:bg-gray-600 ${isCollapsed ? 'justify-center' : ''}`}>
+          </Link>
+          <Link to="/settings" className={getLinkClass('/settings')}>
             <FontAwesomeIcon icon={faCog} />
             <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Settings</span>
-          </a>
+          </Link>
         </nav>
 
         <div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from '../components/Sidebar';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);

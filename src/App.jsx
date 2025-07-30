@@ -1,17 +1,20 @@
-import DashboardLayout from './components/DashboardLayout';
-import DashboardCharts from './components/DashboardCharts';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout';
+import DashboardPage from './pages/DashboardPage';
+import UsersPage from './pages/UsersPage';
+import SettingsPage from './pages/SettingsPage';
 
 function App() {
   return (
-    <DashboardLayout>
-      <div className="w-full text-text-primary">
-        <div className="p-4">
-          <h2 className="text-xl font-semibold mb-4">Welcome to your Dashboard!</h2>
-          <p>This is a basic dashboard layout. You can add your content here.</p>
-        </div>
-        <DashboardCharts />
-      </div>
-    </DashboardLayout>
+    <Router>
+      <DashboardLayout>
+        <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </DashboardLayout>
+    </Router>
   );
 }
 
