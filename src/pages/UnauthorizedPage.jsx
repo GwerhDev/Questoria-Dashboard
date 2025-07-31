@@ -7,7 +7,7 @@ const UnauthorizedPage = () => {
   const logged = useSelector((state) => state.account.logged);
 
   const handleLoginRedirect = () => {
-    window.location.href = 'https://questoria.cl/login';
+    window.location.href = 'https://questoria.cl/login?redirect_uri=' + encodeURIComponent('https://dashboard.questoria.cl');
   };
 
   useEffect(() => {
