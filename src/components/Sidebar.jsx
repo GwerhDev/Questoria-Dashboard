@@ -1,7 +1,7 @@
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faUsers, faCog, faChevronLeft, faChevronRight, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faCog, faChevronLeft, faChevronRight, faPen, faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
@@ -28,12 +28,13 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
     >
       <div className="p-4 flex justify-center items-center">
         <h1 className={`text-2xl font-semibold text-text-primary ${isCollapsed ? 'hidden' : 'block'}`}>Questoria</h1>
+        <h1 className={`text-2xl font-semibold text-text-primary ${!isCollapsed ? 'hidden' : 'block'}`}>Q</h1>
       </div>
 
       <div className={`flex-1 flex flex-col justify-between`}>
         <nav className="p-4 space-y-2">
           <Link to="/" className={getLinkClass('/')}>
-            <FontAwesomeIcon icon={faTachometerAlt} />
+            <FontAwesomeIcon icon={faHome} />
             <span className={`ml-2 ${isCollapsed ? 'hidden' : 'block'}`}>Dashboard</span>
           </Link>
           <Link to="/users" className={getLinkClass('/users')}>

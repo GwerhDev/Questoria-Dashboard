@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        'content': '2000px',
+      },
       colors: {
         'background': '#1a100a',
         'surface': '#2e2014',
