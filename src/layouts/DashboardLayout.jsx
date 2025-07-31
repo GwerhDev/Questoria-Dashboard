@@ -97,7 +97,7 @@ const DashboardLayout = ({ children }) => {
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-surface rounded-md shadow-lg py-1 z-20">
                     <Link to="/u/account" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-text-primary hover:bg-gray-700">Ver perfil</Link>
-                    <button onClick={() => { dispatch(logoutUser()); setIsDropdownOpen(false); }} className="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-gray-700">Cerrar sesión</button>
+                    <button onClick={() => { dispatch(logoutUser(), navigate('/unauthorized')); setIsDropdownOpen(false); }} className="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-gray-700">Cerrar sesión</button>
                   </div>
                 )}
               </div>
