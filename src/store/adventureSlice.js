@@ -42,6 +42,32 @@ export const fetchAdventureById = createAsyncThunk(
   }
 );
 
+export const createAdventure = createAsyncThunk(
+  'adventures/createAdventure',
+  async ({ name, description }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${API_BASE}/adventure`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ name, description }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to create adventure');
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const adventureSlice = createSlice({
   name: 'adventures',
   initialState: {
