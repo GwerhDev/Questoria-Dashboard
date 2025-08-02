@@ -27,8 +27,8 @@ export const Sidebar = ({ isCollapsed, toggleSidebar, isMobile }) => {
       `}
     >
       <div className="p-4 flex justify-center items-center">
-        <h1 className={`text-2xl font-semibold text-text-primary ${isCollapsed ? 'hidden' : 'block'}`}>Questoria</h1>
-        <h1 className={`text-2xl font-semibold text-text-primary ${!isCollapsed ? 'hidden' : 'block'}`}>Q</h1>
+        <h1 className={`text-2xl font-semibold text-text-primary ${isCollapsed ? 'hidden' : 'block'}`}><a href="https://questoria.cl">Questoria</a></h1>
+        <h1 className={`text-2xl font-semibold text-text-primary ${!isCollapsed ? 'hidden' : 'block'}`}><a href="https://questoria.cl">Q</a></h1>
       </div>
 
       <div className={`flex-1 flex flex-col justify-between`}>
