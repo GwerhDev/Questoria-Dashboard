@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAccountData, logoutUser } from '../store/accountSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { fetchAccountData } from '../store/accountSlice';
+import { useNavigate } from 'react-router-dom';
 import { Loader } from '../components/Loader';
+import { UserButton } from '../components/UserButton';
 
 const DashboardLayout = ({ children }) => {
   const accountData = useSelector((state) => state.account.data);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth < 768);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const sidebarRef = useRef(null);
-  const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,9 +44,6 @@ const DashboardLayout = ({ children }) => {
       if (isMobile && !isSidebarCollapsed && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         setIsSidebarCollapsed(true);
       }
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -58,10 +54,6 @@ const DashboardLayout = ({ children }) => {
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
   };
 
   if (loading) {
@@ -85,22 +77,7 @@ const DashboardLayout = ({ children }) => {
               className="p-2 rounded-xl bg-transparent border border-gray-500 text-text-primary focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
             />
             {accountData && accountData.logged && (
-              <div className="relative" ref={dropdownRef}>
-                <button onClick={toggleDropdown} className="flex items-center space-x-2 p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300 focus:outline-none">
-                  {accountData.userData.profilePic ? (
-                    <img src={accountData.userData.profilePic} alt="Profile" className="w-8 h-8 rounded-full" />
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white text-sm">{accountData.userData.username.charAt(0).toUpperCase()}</div>
-                  )}
-                  <span className="text-text-primary hidden md:block">{accountData.userData.username}</span>
-                </button>
-                {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-surface rounded-md shadow-lg py-1 z-20">
-                    <Link to="/u/account" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-text-primary hover:bg-gray-700">Ver perfil</Link>
-                    <button onClick={() => { dispatch(logoutUser(), navigate('/unauthorized')); setIsDropdownOpen(false); }} className="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-gray-700">Cerrar sesión</button>
-                  </div>
-                )}
-              </div>
+              <UserButton />
             )}
           </div>
         </header>
