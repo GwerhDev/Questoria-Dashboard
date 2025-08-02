@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAdventureById } from '../store/adventureSlice';
+import { fetchAdventureById, fetchQuestsForAdventure } from '../store/adventureSlice';
 import { Loader } from '../components/Loader';
 
 const AdventureDetailPage = () => {
   const { adventureId } = useParams();
   const dispatch = useDispatch();
-  const { selectedAdventure: adventure, status, error } = useSelector((state) => state.adventures);
+  const { selectedAdventure: adventure, currentAdventureQuests: quests, status, error } = useSelector((state) => state.adventures);
 
   useEffect(() => {
     if (adventureId) {
       dispatch(fetchAdventureById(adventureId));
+      dispatch(fetchQuestsForAdventure(adventureId));
     }
   }, [adventureId, dispatch]);
 
@@ -35,15 +36,15 @@ const AdventureDetailPage = () => {
         </Link>
       </div>
 
-      {adventure.quests && adventure.quests.length > 0 ? (
+      {quests && quests.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {adventure.quests.map((quest) => (
-            <div key={quest.id} className="bg-surface p-4 rounded-lg shadow-md">
+          {quests.map((quest) => (
+            <Link to={`/creator/${adventureId}/${quest.id}`} key={quest.id} className="bg-surface p-4 rounded-lg shadow-md cursor-pointer hover:bg-gray-700 transition-colors duration-200">
               <h3 className="text-xl font-semibold text-text-primary">{quest.title}</h3>
               <p className="text-text-secondary mt-2">{quest.description}</p>
               {quest.reward && <p className="text-sm text-text-tertiary mt-2">Reward: {quest.reward}</p>}
               {quest.levelRequirement && <p className="text-sm text-text-tertiary">Level: {quest.levelRequirement}</p>}
-            </div>
+            </Link>
           ))}
         </div>
       ) : (

@@ -9,6 +9,7 @@ import CreatorPage from './pages/CreatorPage';
 import CreateAdventurePage from './pages/CreateAdventurePage';
 import AdventureDetailPage from './pages/AdventureDetailPage';
 import CreateQuestPage from './pages/CreateQuestPage';
+import QuestDetailPage from './pages/QuestDetailPage';
 
 const AppContent = () => {
   return (
@@ -25,6 +26,7 @@ const AppContent = () => {
             <Route path="/creator/new" element={<CreateAdventurePage />} />
             <Route path="/creator/:adventureId" element={<AdventureDetailPage />} />
             <Route path="/creator/:adventureId/new-quest" element={<CreateQuestPage />} />
+            <Route path="/creator/:adventureId/:questId" element={<QuestDetailPage />} />
           </Routes>
         </DashboardLayout>
       } />
